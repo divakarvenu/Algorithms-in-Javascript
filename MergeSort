@@ -1,0 +1,42 @@
+function mergeSort (leftArray, rightArray){	
+  let sortedArray = [];
+  let min = null;
+  
+  //if both array exist
+  while(leftArray.length && rightArray.length){
+  		if(leftArray[0] <= rightArray[0]){
+      	  min = leftArray.shift();
+      }else{
+      		min = rightArray.shift();
+      }
+      sortedArray.push(min)
+  }
+  
+  //make sure to concate after sorting
+ 
+  if (leftArray.length) {
+    sortedArray = sortedArray.concat(leftArray);
+  }
+
+  if (rightArray.length) {
+    sortedArray = sortedArray.concat(rightArray);
+  }
+  
+  //return the sortedArray
+  return sortedArray;
+  
+}
+
+function sort(unsortedArray){
+	if(unsortedArray.length == 1){
+  		return unsortedArray;
+  }
+  
+  let middle = Math.floor(unsortedArray.length / 2);
+  let leftArray = unsortedArray.slice(0,middle);
+  let rightArray = unsortedArray.slice(middle);
+  
+  return mergeSort (sort(leftArray),sort(rightArray));  
+}
+
+console.log(sort([10,4,34,2]))
